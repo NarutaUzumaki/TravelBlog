@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Router;
 class Router
 {
     private $controller;
@@ -57,7 +57,7 @@ class Router
                 }
             }
         }
-        $this->controller = new \app\controller\UserController();
+        $this->controller = new \controller\UserController();
         $this->controller->login();
     }
 }

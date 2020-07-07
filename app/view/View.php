@@ -3,6 +3,7 @@ namespace view;
 
 class View{
     public static function make($view, $data=null){
-        include '/views/'.$view.'.php';
+        var_dump($view);
+        include 'views/'.$view.'.php';
     }
 }

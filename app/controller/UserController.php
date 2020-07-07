@@ -1,9 +1,9 @@
 <?php
-namespace app\controller;
-use Controller;
+namespace controller;
+use Router\Controller;
 use view\View;
-require_once ("Controller.php");
-require ("../view/View.php");
+//require_once ("Controller.php");
+
 class UserController extends Controller {
 
     public function login(){

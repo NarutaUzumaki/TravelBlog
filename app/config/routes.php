@@ -1,5 +1,5 @@
 <?php
-use app\Router;
+use Router\Router;
 
 Router::get('/user', 'UserController@login');
 Router::get('/user', 'UserController@signIn');
