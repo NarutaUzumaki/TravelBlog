@@ -35,10 +35,9 @@ class Router
 
     public function run()
     {
-        $controller = 'UserController';
-        $function = 'login';
+//        $controller = 'UserController';
+//        $function = 'login';
         $methodTitle = strtolower($_SERVER['REQUEST_METHOD']);
-
 
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -49,6 +48,7 @@ class Router
                 $this->controller = new $controller();
                 $func = $route['method'];
                 $this->controller->$func();
+                return;
             }
         }
         $this->controller = new \controller\UserController();
