@@ -12,21 +12,21 @@ class Router
 
     public static function get($route, $action)
     {
-        self::createRoutes($route, $action);
+        self::createRoutes('get', $route, $action);
     }
 
     public static function post($route, $action)
     {
-        self::createRoutes($route, $action);
+        self::createRoutes('post', $route, $action);
     }
 
-    public static function createRoutes($route, $action)
+    public static function createRoutes($title, $route, $action)
     {
         $param = explode('@', $action);
         $controller = $param[0];
         $method = $param[1];
 
-        self::$routes = [
+        self::$routes[$title][] = [
             'path' => $route,
             'controller' => $controller,
             'method' => $method,
@@ -37,24 +37,18 @@ class Router
     {
         $controller = 'UserController';
         $function = 'login';
+        $methodTitle = strtolower($_SERVER['REQUEST_METHOD']);
 
-        $path = parse_url($_SERVER['REQUEST_URI']);
 
-        foreach (self::$routes as $route) {
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        foreach (self::$routes[$methodTitle] as $route) {
             if ($route['path'] == $path) {
-                $controller = '/app/controllers' . $route['controller'];
-                if (file_exists('app/controller/.' . $controller . '.php')) {
-                    include ('app/controller/'.$controller.'.php');
+                $controller = 'controller\\' . $route['controller'];
 
-                    $this->controller = new $controller();
-                    if (method_exists($this->controller, $route['method'])) {
-                        $this->$controller->$route['method'];
-                    } else {
-                        die("Function " . $route['method'] . ' not found in ' . $controller);
-                    }
-                } else {
-                    die("Controller class" . $route['controller'] . " with not found");
-                }
+                $this->controller = new $controller();
+                $func = $route['method'];
+                $this->controller->$func();
             }
         }
         $this->controller = new \controller\UserController();
