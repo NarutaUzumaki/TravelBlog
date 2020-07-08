@@ -31,6 +31,7 @@ class Router
             'controller' => $controller,
             'method' => $method,
         ];
+        //var_dump(self::$routes);
     }
 
     public function run()
@@ -38,10 +39,11 @@ class Router
 //        $controller = 'UserController';
 //        $function = 'login';
         $methodTitle = strtolower($_SERVER['REQUEST_METHOD']);
-
+        //var_dump($methodTitle);
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-        foreach (self::$routes[$methodTitle] as $route) {
+        //var_dump($path);
+        //var_dump(self::$routes[$methodTitle]);
+        foreach (self::$routes['post'] as $route) {
             if ($route['path'] == $path) {
                 $controller = 'controller\\' . $route['controller'];
 

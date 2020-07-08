@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="text-center container w-25">
-    <form method="post" action="">
+    <form method="post" action="/signin">
         <div style="padding-top: 2%">
             <input class="form-control" type="text" name="login" placeholder="Введиет Ваш ник или почту" required>
         </div>
