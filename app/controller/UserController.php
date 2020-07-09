@@ -24,6 +24,7 @@ class UserController extends Controller {
     public function signIn(){
         if ($user = Database::select('select * from users where name = :login or email = :login', ['login' => $_POST['login']])){
             if ($user[0]['password'] == $_POST['passwd']){
+                $_SESSION['user'] = $user;
                 header('Location: /article');
             }else{
                 die('Password uncorrect');
@@ -35,7 +36,6 @@ class UserController extends Controller {
 
     public function signUp() {
         if ($_POST['passwd'] == $_POST['passwd_repeat']) {
-            //var_dump(true);
             if ($user = Database::select('select name from users where name = :name',['name' => $_POST['register']])) {
                 die('User with this e-mail exists already');
             }

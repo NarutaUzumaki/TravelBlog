@@ -10,17 +10,22 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .textInput{
+            padding-top: 2%
+        }
+    </style>
 </head>
 <body>
 <div class="text-center container w-25">
     <form method="post" action="/signin">
-        <div style="padding-top: 2%">
+        <div class="textInput">
             <input class="form-control" type="text" name="login" placeholder="Введиет Ваш ник или почту" required>
         </div>
-        <div style="padding-top: 2%">
+        <div class="textInput">
             <input class="form-control" type="password" name="passwd" placeholder="Введите свой пароль" required>
         </div>
-        <div style="padding-top: 2%">
+        <div class="textInput">
             <button class="btn btn-success" type="submit">Войти</button>
             <a class="btn btn-info" href="/register">Регистрация</a>
         </div>

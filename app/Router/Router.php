@@ -7,6 +7,7 @@ class Router
     private static $routes;
 
     public function __construct(){
+        session_start();
         self::$routes = [];
     }
 
@@ -15,13 +16,11 @@ class Router
         self::createRoutes('get', $route, $action);
     }
 
-    public static function post($route, $action)
-    {
+    public static function post($route, $action){
         self::createRoutes('post', $route, $action);
     }
 
-    public static function createRoutes($title, $route, $action)
-    {
+    public static function createRoutes($title, $route, $action){
         $param = explode('@', $action);
         $controller = $param[0];
         $method = $param[1];
@@ -34,8 +33,7 @@ class Router
         //var_dump(self::$routes);
     }
 
-    public function run()
-    {
+    public function run(){
 //        $controller = 'UserController';
 //        $function = 'login';
         $methodTitle = strtolower($_SERVER['REQUEST_METHOD']);

@@ -9,12 +9,11 @@ class Database{
     public static function select($sqlText, $data=null){
         $result = [];
         Data::connect();
-        //print_r(Data::$conn);
         $statement = Data::$conn->prepare($sqlText);
-        if ($data=null){
-            $statement->execute([]);
-        }else {
+        if ($statement->execute($data)){
             $statement->execute($data);
+        }else {
+            $statement->execute([]);
         }
         $result = $statement->fetchAll();
 
@@ -39,16 +38,16 @@ class Database{
         $statement->execute($data);
         return Data::$conn->lastInsertId();
     }
-//
-//    public static function update($sqlText, $data) {
-//        Data::connect();
-//        $statement = Data::$conn->prepare($sqlText);
-//        $statement->execute($data);
-//    }
-//
-//    public static function delete($sqlText, $data) {
-//        Data::connect();
-//        $statement = Data::$conn->prepare($sqlText);
-//        $statement->execute($data);
-//    }
+
+    public static function update($sqlText, $data) {
+        Data::connect();
+        $statement = Data::$conn->prepare($sqlText);
+        $statement->execute($data);
+    }
+
+    public static function delete($sqlText, $data) {
+        Data::connect();
+        $statement = Data::$conn->prepare($sqlText);
+        $statement->execute($data);
+    }
 }

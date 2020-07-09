@@ -7,25 +7,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog</title>
+    <title>Create article</title>
 
-    <script src="https://kit.fontawesome.com/7c0f7f8a2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        body{
-            padding-top: 70px;
+        .textInput{
+            padding-top: 2%
+        }
+        .articleArea{
+            height: 200px;
         }
     </style>
-<!--    сделать подтверждение на удаление-->
-    <script>
-        function confirm() {
-            var sure = confirm("Are you sure to delete this article?");
-            alert(sure);
-        }
-    </script>
 </head>
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,7 +29,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/article">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/create">Create article</a>
@@ -49,20 +44,22 @@
         </form>
     </div>
 </nav>
-<div class=" container w-50">
-    <?php
-    $dataReverse = array_reverse($data);
-    foreach ($dataReverse as $article): ?>
-    <div>
-        <h3><?php echo $article['title'] ?></h3>
-        <p><?php echo $article['post_text']?></p>
-        <div>
-            <p>Author: <?php echo $article['author']?></p>
+<div class="container w-50">
+    <form method="post" action="/newArticle">
+        <div class="textInput">
+            <input class="form-control" type="text" name="title" placeholder="Название статьи" required>
         </div>
-        <div>
-            <a href="/edit?id=<?php echo $article['id'];?>"><button type="button" class="btn btn-info edit-row"><i class="fas fa-pencil-alt"></i></button></a>
-            <a href="/delete?id=<?php echo $article['id'];?>" onclick="confirm()"><button type="button" class="btn btn-danger edit-row"><i class="fas fa-trash"></i></button></a>
+        <div class="textInput">
+            <textarea class="form-control" type="text" name="article" placeholder="Текст статьи" required rows="10"></textarea>
         </div>
-    </div>
-    <?php endforeach;?>
+        <div class="textInput">
+            <input class="form-control" type="text" name="author" placeholder="Автор" value="<?php echo $_SESSION['user'][0]['name'] ?>" readonly>
+        </div>
+        <div class="textInput">
+            <button class="btn btn-success" type="submit">Добавить статью</button>
+            <a class="btn btn-danger" href="/article">Отменить</a>
+        </div>
+    </form>
 </div>
+</body>
+</html>

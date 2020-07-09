@@ -8,4 +8,9 @@ Router::post('/signup', 'UserController@signUp');
 Router::get('/signOut', 'UserController@signOut');
 
 Router::get('/article', 'ArticleController@index');
+Router::get('/create', 'ArticleController@create');
+Router::post('/newArticle', 'ArticleController@newArticle');
+Router::get('/edit', 'ArticleController@edit');
+Router::post('/editArticle', 'ArticleController@editArticle');
+Router::get('/delete', 'ArticleController@delete');
 
