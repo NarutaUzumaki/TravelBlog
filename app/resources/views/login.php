@@ -22,7 +22,7 @@
         </div>
         <div style="padding-top: 2%">
             <button class="btn btn-success" type="submit">Войти</button>
-            <a class="btn btn-warning" href="/user/register">Регистрация</a>
+            <a class="btn btn-info" href="/register">Регистрация</a>
         </div>
     </form>
 </div>

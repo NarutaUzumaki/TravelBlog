@@ -1,5 +1,5 @@
 <?php
-namespace view;
+namespace resources;
 
 class View{
     public static function make($view, $data=null){

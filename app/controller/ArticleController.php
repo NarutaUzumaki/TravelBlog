@@ -3,12 +3,13 @@
 
 namespace controller;
 use Router\Controller;
-use view\View;
+use resources\View;
 use database\Database;
 
 class ArticleController extends Controller{
     public function index(){
-        echo 'index';
+        $articles = Database::select('select id, post_text, author from articles');
+        View::make('index', $articles);
     }
 
 }

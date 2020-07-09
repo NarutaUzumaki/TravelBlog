@@ -43,7 +43,7 @@ class Router
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         //var_dump($path);
         //var_dump(self::$routes[$methodTitle]);
-        foreach (self::$routes['post'] as $route) {
+        foreach (self::$routes[$methodTitle] as $route) {
             if ($route['path'] == $path) {
                 $controller = 'controller\\' . $route['controller'];
 
