@@ -53,9 +53,12 @@
     <?php
     $dataReverse = array_reverse($data);
     foreach ($dataReverse as $article): ?>
-    <div>
+    <div class="content-row">
         <h3><?php echo $article['title'] ?></h3>
-        <p><?php echo $article['post_text']?></p>
+        <div>
+<!--            текст выходит за пределы блока-->
+            <p style="width: 100%;"><?php echo $article['post_text']?></p>
+        </div>
         <div>
             <p>Author: <?php echo $article['author']?></p>
         </div>
