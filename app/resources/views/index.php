@@ -15,6 +15,16 @@
         body{
             padding-top: 70px;
         }
+        .contentText{
+            white-space: normal;
+            align-content: center;
+            text-align: justify;
+            overflow: hidden;
+        }
+        .article{
+            margin-bottom: 7%;
+            box-shadow: 10px -15px 10px 5px rgba(0, 0, 0, .2);
+        }
     </style>
 <!--    сделать подтверждение на удаление-->
     <script>
@@ -36,11 +46,13 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
+            <?php if($_SESSION['user'][0]['is_admin'] == 1): ?>
             <li class="nav-item">
                 <a class="nav-link" href="/create">Create article</a>
             </li>
+            <?php endif; ?>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="/usersList">Users</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/signOut">
@@ -53,9 +65,9 @@
     <?php
     $dataReverse = array_reverse($data);
     foreach ($dataReverse as $article): ?>
-    <div class="content-row">
+    <div class="content-row article">
         <h3><?php echo $article['title'] ?></h3>
-        <div>
+        <div class="contentText">
 <!--            текст выходит за пределы блока-->
             <p style="width: 100%;"><?php echo $article['post_text']?></p>
         </div>
@@ -63,8 +75,10 @@
             <p>Author: <?php echo $article['author']?></p>
         </div>
         <div>
+            <?php if($_SESSION['user'][0]['is_admin'] == 1): ?>
             <a href="/edit?id=<?php echo $article['id'];?>"><button type="button" class="btn btn-info edit-row"><i class="fas fa-pencil-alt"></i></button></a>
             <a href="/delete?id=<?php echo $article['id'];?>" onclick="confirm()"><button type="button" class="btn btn-danger edit-row"><i class="fas fa-trash"></i></button></a>
+            <?php endif; ?>
         </div>
     </div>
     <?php endforeach;?>

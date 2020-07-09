@@ -6,6 +6,7 @@ Router::get('/register', 'UserController@register');
 Router::post('/signin', 'UserController@signIn');
 Router::post('/signup', 'UserController@signUp');
 Router::get('/signOut', 'UserController@signOut');
+Router::get('/usersList', 'UserController@usersList');
 
 Router::get('/article', 'ArticleController@index');
 Router::get('/create', 'ArticleController@create');

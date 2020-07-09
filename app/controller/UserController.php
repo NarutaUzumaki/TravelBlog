@@ -15,6 +15,10 @@ class UserController extends Controller {
         View::make('register');
     }
 
+    public function usersList(){
+        View::make('userList');
+    }
+
     //-------------------------
     public function justTest(){
         View::make('test');
