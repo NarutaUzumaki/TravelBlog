@@ -1,5 +1,5 @@
 <?php
-use Router\Router;
+use core\Router;
 
 Router::get('/login', 'UserController@login');
 Router::get('/register', 'UserController@register');
@@ -14,4 +14,6 @@ Router::post('/newArticle', 'ArticleController@newArticle');
 Router::get('/edit', 'ArticleController@edit');
 Router::post('/editArticle', 'ArticleController@editArticle');
 Router::get('/delete', 'ArticleController@delete');
+
+Router::get('/report', 'ExceptionController@errorMessage');
 

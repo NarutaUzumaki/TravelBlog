@@ -1,5 +1,5 @@
 <?php
-namespace Router;
+namespace core;
 class Controller{
     protected $view;
 

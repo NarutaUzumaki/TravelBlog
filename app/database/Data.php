@@ -1,6 +1,7 @@
 <?php
 namespace database;
 use http\Exception;
+use ownExc\OwnException;
 use PDO;
 use Router\Controller;
 use config\Config;
@@ -18,9 +19,10 @@ class Data{
 
     public static function connect(){
         try {
-            self::$conn = new PDO("mysql:host=".Config::$server.";dbname=".Config::$dataBase, Config::$user,Config::$password);
+            $config = Config::conf();
+            self::$conn = new PDO("mysql:host=".$config['server'].";dbname=".$config['database'],$config['user'],$config['password']);
         }catch (Exception $e){
-            echo "Connection failed.";
+            throw new OwnException('Connection to db failed.');
         }
     }
     //select,delete,edit в одном классе

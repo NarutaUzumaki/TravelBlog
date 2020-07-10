@@ -2,13 +2,14 @@
 
 
 namespace controller;
-use Router\Controller;
+use core\Controller;
 use resources\View;
 use database\Database;
 
 class ArticleController extends Controller{
     public function index(){
-        $articles = Database::select('select id, title, post_text, author from articles');
+        $articles = Database::select('select id, title, post_text, author 
+                                                from articles');
         View::make('index', $articles);
     }
 
@@ -17,23 +18,31 @@ class ArticleController extends Controller{
     }
 
     public function newArticle(){
-        $article = Database::insert('insert into articles(title,post_text,author) value(:title, :post_text, :author)', [
+        $article = Database::insert('insert into articles(title,post_text,author) 
+                                                value(:title, :post_text, :author)', [
             'title'=>$_POST['title'],
             'post_text'=>$_POST['article'],
             'author'=>$_SESSION['user'][0]['name'],
         ]);
-    header('Location: /article');
+        if ($article) {
+            header('Location: /article');
+        }else{
+            header('Location: /report');
+        }
     }
 
     public function edit(){
-        $oneArticle = Database::select('select id, title, post_text, author from articles where id = :id', [
+        $oneArticle = Database::select('select id, title, post_text, author 
+                                                    from articles where id = :id', [
             'id'=>$_GET['id'],
         ]);
         View::make('edit', $oneArticle);
     }
 
     public function editArticle(){
-        $editArticle = Database::update('update articles set title = :title, post_text = :post_text where id = :id', [
+        $editArticle = Database::update('update articles 
+                                                set title = :title, post_text = :post_text 
+                                                where id = :id', [
            'title'=>$_POST['title'],
            'post_text'=>$_POST['article'],
             'id'=>$_POST['id'],

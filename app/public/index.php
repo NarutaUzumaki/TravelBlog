@@ -8,7 +8,7 @@
             return;
         }
     });
-    $router = new Router\Router();
+    $router = new core\Router();
     require '../config/routes.php';
     $router->run();
 ?>
